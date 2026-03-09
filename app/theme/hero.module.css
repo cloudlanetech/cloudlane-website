@@ -1,0 +1,130 @@
+/* =============================================
+   Hero Theme
+   ============================================= */
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: var(--cl-space-3xl) var(--cl-space-xl) var(--cl-space-2xl);
+    max-width: var(--cl-max-width);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.heading {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-5xl);
+    font-weight: 700;
+    color: var(--cl-text-primary);
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin: 0 0 var(--cl-space-lg);
+    max-width: 700px;
+}
+
+.subtext {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-base);
+    color: var(--cl-text-secondary);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 0 var(--cl-space-xl);
+}
+
+.buttonGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--cl-space-md);
+    margin-bottom: var(--cl-space-xl);
+}
+
+.primaryBtn {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-base);
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 14px 28px;
+    border-radius: var(--cl-radius-pill);
+    cursor: pointer;
+    transition: all var(--cl-transition-fast);
+    text-decoration: none;
+}
+
+.primaryBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.secondaryBtn {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-base);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 14px 28px;
+    border-radius: var(--cl-radius-pill);
+    cursor: pointer;
+    transition: all var(--cl-transition-fast);
+    text-decoration: none;
+}
+
+.secondaryBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.trustBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--cl-space-sm);
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+    color: #fbbf24;
+    font-size: var(--cl-text-lg);
+}
+
+.star {
+    color: #fbbf24;
+}
+
+.trustText {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    color: var(--cl-text-secondary);
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: var(--cl-space-2xl) var(--cl-space-md) var(--cl-space-xl);
+        min-height: 100vh;
+    }
+
+    .heading {
+        font-size: var(--cl-text-4xl);
+        letter-spacing: -1px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .primaryBtn,
+    .secondaryBtn {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,120 @@
+/* =============================================
+   Social Proof / Marquee Theme
+   ============================================= */
+
+.socialProof {
+    padding: var(--cl-space-2xl) 0;
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%);
+}
+
+.marqueeRow {
+    display: flex;
+    gap: var(--cl-space-md);
+    margin-bottom: var(--cl-space-md);
+    animation: marqueeScroll 30s linear infinite;
+    width: max-content;
+}
+
+.marqueeRowReverse {
+    display: flex;
+    gap: var(--cl-space-md);
+    margin-bottom: var(--cl-space-md);
+    animation: marqueeScrollReverse 30s linear infinite;
+    width: max-content;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes marqueeScrollReverse {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.userCard {
+    display: flex;
+    align-items: center;
+    gap: var(--cl-space-sm);
+    background: var(--cl-surface-dark-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--cl-radius-pill);
+    padding: var(--cl-space-sm) var(--cl-space-md) var(--cl-space-sm) var(--cl-space-sm);
+    min-width: 200px;
+    transition: all var(--cl-transition-fast);
+    cursor: default;
+}
+
+.userCard:hover {
+    background: rgba(10, 20, 40, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.avatarIcon {
+    color: white;
+    font-size: var(--cl-text-sm);
+    font-weight: 700;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.userName {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    font-weight: 600;
+    color: var(--cl-text-light);
+    white-space: nowrap;
+}
+
+.userStats {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-xs);
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+.statDot {
+    margin: 0 4px;
+    opacity: 0.5;
+}

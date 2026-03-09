@@ -1,0 +1,231 @@
+/* =============================================
+   Services Theme — GSAP pin/scrub with inline
+   expanding descriptions & sliding cards
+   ============================================= */
+
+/* Outer wrapper — tall scrollable area for GSAP */
+.triggerWrap {
+    position: relative;
+}
+
+/* Pinned section */
+.services {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 60px;
+    background-color: #000000;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.services::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%,
+            rgba(40, 100, 200, 0.12) 0%,
+            transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+/* ========================
+   LEFT PANEL
+   ======================== */
+.leftPanel {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--cl-space-2xl) var(--cl-space-2xl);
+}
+
+.heading {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-3xl);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 var(--cl-space-xl);
+    letter-spacing: -0.5px;
+}
+
+.serviceList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Each service entry: title + collapsible description */
+.serviceEntry {
+    padding: var(--cl-space-md) 0;
+    transition: all 0.3s ease;
+}
+
+
+
+.serviceTitle {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-base);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+    padding-left: 16px;
+    position: relative;
+}
+
+.serviceTitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--cl-blue-400);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Active state — toggled via data-active attribute from GSAP */
+.serviceEntry[data-active] .serviceTitle {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.serviceEntry[data-active] .serviceTitle::before {
+    opacity: 1;
+}
+
+/* Collapsible description wrapper */
+.descWrap {
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    padding-left: 16px;
+}
+
+.serviceDesc {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    margin: var(--cl-space-sm) 0 0;
+    max-width: 340px;
+}
+
+.learnMore {
+    display: inline-block;
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: var(--cl-space-sm);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.learnMore:hover {
+    opacity: 0.7;
+}
+
+/* ========================
+   RIGHT PANEL — bottom-right scrolling card strip
+   ======================== */
+.rightPanel {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Viewport window — clips the strip, positioned at bottom-right */
+.cardStack {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 85%;
+    height: 80%;
+    overflow: hidden;
+    border-radius: var(--cl-radius-lg) 0 0 0;
+}
+
+/* Vertical strip — GSAP moves this up smoothly */
+.cardStrip {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    will-change: transform;
+}
+
+/* Individual card in the strip */
+.slideCard {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    flex-shrink: 0;
+    border-radius: var(--cl-radius-lg);
+    background: linear-gradient(135deg, var(--cl-cyan) 0%, var(--cl-cyan-light) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: var(--cl-space-xl);
+}
+
+.cardNumber {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-4xl);
+    font-weight: 800;
+    color: rgba(0, 60, 120, 0.12);
+    letter-spacing: -2px;
+}
+
+/* ========================
+   RESPONSIVE
+   ======================== */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services {
+        padding: var(--cl-space-xl) var(--cl-space-md);
+    }
+
+    .leftPanel {
+        padding: var(--cl-space-xl) var(--cl-space-md);
+    }
+
+    .rightPanel {
+        position: relative;
+        min-height: 280px;
+    }
+
+    .cardStack {
+        width: 90%;
+        height: 75%;
+    }
+
+    .heading {
+        font-size: var(--cl-text-2xl);
+    }
+}

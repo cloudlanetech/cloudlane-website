@@ -1,0 +1,84 @@
+/* =============================================
+   Tremyda Section Theme
+   ============================================= */
+
+.tremyda {
+    padding: 0 var(--cl-space-xl);
+    max-width: var(--cl-max-width);
+    margin: 0 auto var(--cl-space-3xl);
+    width: 100%;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--cl-space-xl);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--cl-radius-xl);
+    padding: var(--cl-space-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.heading {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-3xl);
+    font-weight: 700;
+    color: var(--cl-text-primary);
+    margin: 0 0 var(--cl-space-lg);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-lg);
+    font-weight: 700;
+    color: var(--cl-text-primary);
+    margin: 0 0 var(--cl-space-md);
+}
+
+.description {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    color: var(--cl-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.imagePlaceholder {
+    border-radius: var(--cl-radius-lg);
+    background: rgba(255, 255, 255, 0.05);
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--cl-font-sans);
+    color: rgba(255, 255, 255, 0.1);
+    font-size: var(--cl-text-sm);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .card {
+        grid-template-columns: 1fr;
+        padding: var(--cl-space-xl);
+    }
+
+    .heading {
+        font-size: var(--cl-text-2xl);
+    }
+
+    .imagePlaceholder {
+        min-height: 220px;
+    }
+}

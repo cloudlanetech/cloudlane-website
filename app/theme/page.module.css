@@ -1,0 +1,8 @@
+/* =============================================
+   Page Layout Theme
+   ============================================= */
+
+.page {
+    min-height: 100vh;
+    background: var(--cl-gradient-page);
+}

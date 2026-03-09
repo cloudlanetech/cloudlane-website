@@ -1,0 +1,121 @@
+/* =============================================
+   Navbar Theme
+   ============================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--cl-space-md) var(--cl-space-2xl);
+    background: transparent;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: none;
+}
+
+.logo {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-xl);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity var(--cl-transition-fast);
+    flex-shrink: 0;
+}
+
+.logoDot {
+    color: var(--cl-brand-green);
+    margin-left: 2px;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.navLinks {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--cl-space-sm);
+}
+
+.navLink {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: var(--cl-space-sm) var(--cl-space-md);
+    transition: all var(--cl-transition-fast);
+    white-space: nowrap;
+}
+
+.navLink:hover {
+    color: var(--cl-brand-green);
+}
+
+.ctaButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: var(--cl-radius-pill);
+    background: var(--cl-brand-green);
+    cursor: pointer;
+    transition: all var(--cl-transition-fast);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ctaButton:hover {
+    background: var(--cl-brand-green-hover);
+    transform: scale(1.03);
+}
+
+.ctaArrow {
+    transition: transform var(--cl-transition-fast);
+}
+
+.ctaButton:hover .ctaArrow {
+    transform: translateX(3px);
+}
+
+/* Mobile */
+.mobileMenuBtn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--cl-space-sm);
+    color: #ffffff;
+    font-size: var(--cl-text-xl);
+}
+
+@media (max-width: 768px) {
+    .navLinks {
+        display: none;
+    }
+
+    .ctaButton {
+        display: none;
+    }
+
+    .mobileMenuBtn {
+        display: flex;
+    }
+}
