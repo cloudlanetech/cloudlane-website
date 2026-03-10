@@ -5,18 +5,41 @@
 .navbar {
     position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     width: 100%;
+    height: 72px;
     z-index: 1000;
+    /* Force a clean stacking context for backdrop-filter to work reliably */
+    isolation: isolate;
+}
+
+/* THE BLUR LAYER - Perfect Framer style */
+.navbarBlur {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+
+    /* Clean semi-transparent background */
+    background: rgba(0, 0, 0, 0.5);
+
+    pointer-events: none;
+}
+
+/* CONTENT ABOVE BLUR */
+.navbarContent {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--cl-space-md) var(--cl-space-2xl);
-    background: transparent;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: none;
+
+    padding: 0 var(--cl-space-2xl);
+    box-sizing: border-box;
 }
 
 .logo {
@@ -87,15 +110,6 @@
     transform: scale(1.03);
 }
 
-.ctaArrow {
-    transition: transform var(--cl-transition-fast);
-}
-
-.ctaButton:hover .ctaArrow {
-    transform: translateX(3px);
-}
-
-/* Mobile */
 .mobileMenuBtn {
     display: none;
     background: none;

@@ -1,5 +1,5 @@
 /* =============================================
-   Hero Theme
+   Hero Theme — Framer Style Refinement
    ============================================= */
 
 .hero {
@@ -9,112 +9,145 @@
     justify-content: center;
     text-align: center;
     min-height: 100vh;
-    padding: var(--cl-space-3xl) var(--cl-space-xl) var(--cl-space-2xl);
+    padding: var(--cl-space-4xl) var(--cl-space-xl) var(--cl-space-4xl);
     max-width: var(--cl-max-width);
     margin: 0 auto;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, rgba(40, 100, 200, 0.08) 0%, transparent 60%);
 }
 
+/* Framer Top Label Pill */
+.topLabel {
+    font-family: var(--cl-font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(15, 15, 15, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 99px;
+    margin-bottom: var(--cl-space-xl);
+    backdrop-filter: blur(10px);
+}
+
+.labelAccent {
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+/* Massive Bold Heading */
 .heading {
     font-family: var(--cl-font-display);
-    font-size: var(--cl-text-5xl);
-    font-weight: 700;
-    color: var(--cl-text-primary);
-    line-height: 1.15;
-    letter-spacing: -1.5px;
+    /* Massive size for that Framer impact */
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
     margin: 0 0 var(--cl-space-lg);
-    max-width: 700px;
+    max-width: 900px;
+    /* Wider to match Framer's presence */
 }
 
+/* Muted refined subtext */
 .subtext {
     font-family: var(--cl-font-sans);
-    font-size: var(--cl-text-base);
-    color: var(--cl-text-secondary);
-    line-height: 1.7;
-    max-width: 520px;
-    margin: 0 0 var(--cl-space-xl);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    max-width: 650px;
+    margin: 0 0 var(--cl-space-2xl);
+    font-weight: 450;
 }
 
 .buttonGroup {
     display: flex;
     align-items: center;
     gap: var(--cl-space-md);
-    margin-bottom: var(--cl-space-xl);
+    margin-bottom: var(--cl-space-3xl);
 }
 
+/* Primary Button - Solid White */
 .primaryBtn {
     font-family: var(--cl-font-sans);
-    font-size: var(--cl-text-base);
-    font-weight: 600;
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    background: #ffffff;
+    padding: 10px 24px;
     border-radius: var(--cl-radius-pill);
     cursor: pointer;
-    transition: all var(--cl-transition-fast);
+    transition: all 0.2s ease;
     text-decoration: none;
+    border: none;
 }
 
 .primaryBtn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
+    transform: scale(1.03);
+    background: rgba(255, 255, 255, 0.95);
 }
 
+/* Secondary Button - Ghost style */
 .secondaryBtn {
     font-family: var(--cl-font-sans);
-    font-size: var(--cl-text-base);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.8);
-    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 14px 28px;
+    padding: 10px 24px;
     border-radius: var(--cl-radius-pill);
     cursor: pointer;
-    transition: all var(--cl-transition-fast);
+    transition: all 0.2s ease;
     text-decoration: none;
 }
 
 .secondaryBtn:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+    transform: scale(1.03);
 }
 
 .trustBadge {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: var(--cl-space-sm);
+    opacity: 0.8;
 }
 
 .stars {
     display: flex;
-    gap: 2px;
+    gap: 4px;
     color: #fbbf24;
-    font-size: var(--cl-text-lg);
+    font-size: 14px;
 }
 
 .star {
-    color: #fbbf24;
+    color: #ffb400;
 }
 
 .trustText {
     font-family: var(--cl-font-sans);
-    font-size: var(--cl-text-sm);
-    color: var(--cl-text-secondary);
-    font-weight: 500;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
     .hero {
         padding: var(--cl-space-2xl) var(--cl-space-md) var(--cl-space-xl);
-        min-height: 100vh;
     }
 
     .heading {
-        font-size: var(--cl-text-4xl);
-        letter-spacing: -1px;
+        font-size: 3rem;
+        letter-spacing: -1.5px;
+    }
+
+    .subtext {
+        font-size: 1.1rem;
     }
 
     .buttonGroup {

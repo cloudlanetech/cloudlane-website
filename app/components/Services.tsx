@@ -12,40 +12,51 @@ const services = [
         title: "IT Infrastructure & IT Consultations",
         description:
             "End-to-end IT infrastructure design, deployment, and consulting to build resilient, scalable systems tailored to your business.",
+        icon: "🏗️",
+        tagline: "Build a resilient digital backbone with expert guidance.",
     },
     {
         title: "Cloud Solutions",
         description:
             "Migrate, manage, and optimize your cloud environments for performance, cost-efficiency, and security across all major platforms.",
+        icon: "☁️",
+        tagline: "Seamless cloud migration and optimization at scale.",
     },
     {
         title: "AWS Consulting",
         description:
             "Expert AWS architecture, migration strategies, and managed services to maximize your Amazon Web Services investment.",
+        icon: "⚡",
+        tagline: "Maximize your AWS investment with battle-tested strategies.",
     },
     {
         title: "AI & Automations",
         description:
             "Leverage artificial intelligence and workflow automation to streamline operations, reduce costs, and unlock new capabilities.",
+        icon: "🤖",
+        tagline: "Intelligent automation that drives real business outcomes.",
     },
     {
         title: "Web Applications",
         description:
             "Custom web application development using modern frameworks, delivering fast, responsive, and scalable digital experiences.",
+        icon: "🌐",
+        tagline: "Modern, performant web experiences built to convert.",
     },
     {
         title: "Mobile Applications",
         description:
             "Native and cross-platform mobile apps designed for performance, usability, and seamless integration with your ecosystem.",
+        icon: "📱",
+        tagline: "Cross-platform apps engineered for engagement.",
     },
 ];
 
 export default function Services() {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const triggerRef = useRef<HTMLDivElement>(null);
-    const stripRef = useRef<HTMLDivElement>(null);
+    const sectionRef = useRef<HTMLElement>(null);
     const entryRefs = useRef<(HTMLDivElement | null)[]>([]);
     const descRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     const activeRef = useRef<number>(0);
 
     const setEntryRef = useCallback((el: HTMLDivElement | null, i: number) => {
@@ -54,9 +65,12 @@ export default function Services() {
     const setDescRef = useCallback((el: HTMLDivElement | null, i: number) => {
         descRefs.current[i] = el;
     }, []);
+    const setCardRef = useCallback((el: HTMLDivElement | null, i: number) => {
+        cardRefs.current[i] = el;
+    }, []);
 
+    // Set initial description state
     useEffect(() => {
-        // Initial state for descriptions: GSAP handles this on mount
         descRefs.current.forEach((desc, i) => {
             if (!desc) return;
             gsap.set(desc, { height: i === 0 ? "auto" : 0, opacity: i === 0 ? 1 : 0 });
@@ -67,122 +81,103 @@ export default function Services() {
         });
     }, []);
 
+    // ScrollTrigger per card — detect which card is in view
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const panels = services.length;
-            const strip = stripRef.current;
-            if (!strip || !triggerRef.current) return;
+        const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
+        if (cards.length === 0) return;
 
-            // Wait a bit for layout to settle before measurement
-            setTimeout(() => {
-                const firstCard = strip.children[0] as HTMLElement;
-                const secondCard = strip.children[1] as HTMLElement;
-                if (!firstCard) return;
+        const triggers: ScrollTrigger[] = [];
 
-                const cardH = firstCard.getBoundingClientRect().height;
-                const gap = secondCard
-                    ? secondCard.getBoundingClientRect().top - firstCard.getBoundingClientRect().bottom
-                    : 16;
-                const totalShift = (panels - 1) * (cardH + gap);
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: triggerRef.current,
-                        start: "top top",
-                        end: `+=${panels * 100}%`,
-                        pin: sectionRef.current,
-                        scrub: 1,
-                        invalidateOnRefresh: true,
-                    },
-                });
-
-                tl.to(strip, {
-                    y: -totalShift,
-                    duration: panels,
-                    ease: "none",
-                }, 0);
-
-                // Left side animations
-                for (let i = 0; i < panels - 1; i++) {
-                    const transitionTime = ((i + 0.85) / panels) * panels;
-
-                    tl.to(descRefs.current[i], {
-                        height: 0,
-                        opacity: 0,
-                        duration: 0.4,
-                        ease: "power1.in",
-                        onComplete: () => {
-                            entryRefs.current[i]?.removeAttribute("data-active");
-                        },
-                    }, transitionTime);
-
-                    tl.to(descRefs.current[i + 1], {
-                        height: "auto",
-                        opacity: 1,
-                        duration: 0.4,
-                        ease: "power1.out",
-                        onStart: () => {
-                            entryRefs.current[i + 1]?.setAttribute("data-active", "true");
-                        },
-                    }, transitionTime + 0.15);
-                }
-
-                ScrollTrigger.refresh();
-            }, 100);
+        cards.forEach((card, i) => {
+            const st = ScrollTrigger.create({
+                trigger: card,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => activateService(i),
+                onEnterBack: () => activateService(i),
+            });
+            triggers.push(st);
         });
 
-        return () => ctx.revert();
+        return () => {
+            triggers.forEach((st) => st.kill());
+        };
     }, []);
 
-    return (
-        <div id="services" ref={triggerRef} className={styles.triggerWrap}>
-            <div ref={sectionRef} className={styles.services}>
-                <div className={styles.grid}>
-                    {/* Left: service list with inline descriptions */}
-                    <div className={styles.leftPanel}>
-                        <h2 className={styles.heading}>Services</h2>
-                        <div className={styles.serviceList}>
-                            {services.map((service, i) => (
-                                <div
-                                    key={service.title}
-                                    ref={(el) => setEntryRef(el, i)}
-                                    className={styles.serviceEntry}
-                                >
-                                    <div className={styles.serviceTitle}>
-                                        {service.title}
-                                    </div>
-                                    <div
-                                        ref={(el) => setDescRef(el, i)}
-                                        className={styles.descWrap}
-                                    >
-                                        <p className={styles.serviceDesc}>
-                                            {service.description}
-                                        </p>
-                                        <a href="#contact" className={styles.learnMore}>
-                                            Learn more →
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+    function activateService(index: number) {
+        const prev = activeRef.current;
+        if (prev === index) return;
 
-                    {/* Right: bottom-right vertical card strip */}
-                    <div className={styles.rightPanel}>
-                        <div className={styles.cardStack}>
-                            <div ref={stripRef} className={styles.cardStrip}>
-                                {services.map((_, i) => (
-                                    <div key={`card-${i}`} className={styles.slideCard}>
-                                        <span className={styles.cardNumber}>
-                                            {String(i + 1).padStart(2, "0")}
-                                        </span>
-                                    </div>
-                                ))}
+        // Collapse previous description
+        const prevDesc = descRefs.current[prev];
+        if (prevDesc) {
+            gsap.to(prevDesc, { height: 0, opacity: 0, duration: 0.15, ease: "none" });
+        }
+        entryRefs.current[prev]?.removeAttribute("data-active");
+
+        // Expand new description
+        const nextDesc = descRefs.current[index];
+        if (nextDesc) {
+            gsap.to(nextDesc, { height: "auto", opacity: 1, duration: 0.15, ease: "none" });
+        }
+        entryRefs.current[index]?.setAttribute("data-active", "true");
+
+        activeRef.current = index;
+    }
+
+    return (
+        <section id="services" ref={sectionRef} className={styles.servicesSection}>
+            <div className={styles.container}>
+                {/* Left: sticky service list with inline descriptions */}
+                <div className={styles.servicesLeft}>
+                    <h2 className={styles.heading}>Services</h2>
+
+                    <ul className={styles.servicesList}>
+                        {services.map((service, i) => (
+                            <div
+                                key={service.title}
+                                ref={(el) => setEntryRef(el, i)}
+                                className={styles.serviceEntry}
+                                data-active={i === 0 ? "true" : undefined}
+                            >
+                                <div className={styles.serviceTitle}>
+                                    {service.title}
+                                </div>
+                                <div
+                                    ref={(el) => setDescRef(el, i)}
+                                    className={styles.descWrap}
+                                >
+                                    <p className={styles.serviceDesc}>
+                                        {service.description}
+                                    </p>
+                                    <a href="#contact" className={styles.learnMore}>
+                                        Learn more →
+                                    </a>
+                                </div>
                             </div>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Right: scrolling card strip, right-edge aligned */}
+                <div className={styles.servicesRight}>
+                    {services.map((service, i) => (
+                        <div
+                            key={`card-${i}`}
+                            ref={(el) => setCardRef(el, i)}
+                            className={styles.serviceCard}
+                        >
+                            <div className={styles.cardPattern} />
+                            <span className={styles.cardNumber}>
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <div className={styles.cardIcon}>{service.icon}</div>
+                            <h3 className={styles.cardTitle}>{service.title}</h3>
+                            <p className={styles.cardTagline}>{service.tagline}</p>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

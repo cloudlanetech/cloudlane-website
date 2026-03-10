@@ -10,8 +10,9 @@ export default function Hero() {
             </h1>
 
             <p className={styles.subtext}>
-                Empowering Businesses with cloud technology solutions from custom
-                software to AI-Driven platforms, we engineer your digital success
+                Empowering businesses with cloud technology solutions from custom
+                software to AI-Driven platforms. We engineer your digital success
+                to scale with integrated AI and automation.
             </p>
 
             <div className={styles.buttonGroup}>
@@ -23,6 +24,7 @@ export default function Hero() {
                 </a>
             </div>
 
+            {/* Trust badge kept for continuity with user's previous look but styled subtly */}
             <div className={styles.trustBadge}>
                 <div className={styles.stars}>
                     {[...Array(5)].map((_, i) => (
