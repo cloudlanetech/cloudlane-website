@@ -50,6 +50,8 @@
     top: 120px;
     align-self: start;
     padding-bottom: var(--cl-space-2xl);
+    padding-left: 75px;
+
 }
 
 .heading {
@@ -151,11 +153,13 @@
     flex-direction: column;
     gap: 20px;
     padding-right: 0;
+    padding-left: 70px;
 }
 
 /* Individual card */
 .serviceCard {
     width: 100%;
+    height: 750px;
     aspect-ratio: 16 / 10;
     flex-shrink: 0;
     border-radius: var(--cl-radius-xl) 0 0 var(--cl-radius-xl);
@@ -166,6 +170,7 @@
     padding: var(--cl-space-2xl);
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--cl-space-3xl);
 }
 
 /* Dark gradient overlay */

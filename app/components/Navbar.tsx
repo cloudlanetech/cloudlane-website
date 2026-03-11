@@ -1,16 +1,18 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import styles from "../theme/navbar.module.css";
 
-const navLinks = [
-    { label: "Services", href: "#services" },
-    { label: "Tremyda", href: "#tremyda" },
-    { label: "About Us", href: "#about" },
-    { label: "Blog", href: "#blog" },
-    { label: "Contact", href: "#contact" },
-];
-
 export default function Navbar() {
+    const pathname = usePathname();
+    const isBookPage = pathname === "/book";
+
+    const navLinks = [
+        { label: "Home", href: "/", show: isBookPage },
+        { label: "Services", href: isBookPage ? "/#services" : "#services", show: true },
+        { label: "Tremyda", href: isBookPage ? "/#tremyda" : "#tremyda", show: true },
+        { label: "Contact", href: "/book", show: !isBookPage },
+    ];
     return (
         <header className={styles.navbar}>
             {/* THE BLUR LAYER */}
@@ -23,14 +25,14 @@ export default function Navbar() {
                 </a>
 
                 <div className={styles.navLinks}>
-                    {navLinks.map((link) => (
+                    {navLinks.filter(link => link.show).map((link) => (
                         <a key={link.label} href={link.href} className={styles.navLink}>
                             {link.label}
                         </a>
                     ))}
                 </div>
 
-                <a href="#contact" className={styles.ctaButton}>
+                <a href="/book" className={styles.ctaButton}>
                     Book an Intro Call
                 </a>
 

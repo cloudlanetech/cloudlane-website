@@ -1,9 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Syne, DM_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
+  weight: ["300", "400"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -23,6 +43,9 @@ export const metadata: Metadata = {
   ],
 };
 
+import Navbar from "./components/Navbar";
+import CustomCursor from "./components/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +53,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>{children}</body>
+      <body className={`${inter.variable} ${syne.variable} ${dmMono.variable} ${instrumentSerif.variable}`}>
+        <CustomCursor />
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

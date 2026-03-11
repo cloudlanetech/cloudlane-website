@@ -40,3 +40,52 @@ a {
 button {
   font-family: inherit;
 }
+
+/* ── CUSTOM CURSOR ── */
+.custom-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: #c8f135;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  mix-blend-mode: difference;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(200, 241, 53, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  margin-top: -15px; /* Offset for centering ring around the dot */
+  margin-left: -15px;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, margin 0.3s;
+}
+
+.custom-cursor.hover {
+  width: 20px;
+  height: 20px;
+  background: rgba(200, 241, 53, 0.8);
+}
+
+.custom-cursor-ring.hover {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(200, 241, 53, 0.2);
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+/* Hide default cursor site-wide */
+body, a, button, [role="button"], input, textarea, select {
+  cursor: none !important;
+}

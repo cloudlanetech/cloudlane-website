@@ -1,0 +1,73 @@
+.outroSection {
+    background-color: #0a0a0a;
+    padding: 160px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    max-width: 800px;
+    z-index: 2;
+}
+
+.headline {
+    font-family: var(--cl-font-serif), "Instrument Serif", serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 600;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.subheadline {
+    font-family: var(--cl-font-sans), "Syne", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 48px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+}
+
+.ctaButton {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-family: var(--cl-font-sans), "Syne", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid #ffffff;
+}
+
+.ctaButton:hover {
+    background-color: transparent;
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle background glow */
+.outroSection::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 68, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}

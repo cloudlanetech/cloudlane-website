@@ -42,7 +42,7 @@
     font-family: var(--cl-font-display);
     /* Massive size for that Framer impact */
     font-size: clamp(3.5rem, 8vw, 6.5rem);
-    font-weight: 800;
+    font-weight: 700;
     color: #ffffff;
     line-height: 1.0;
     letter-spacing: -0.04em;
