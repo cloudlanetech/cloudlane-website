@@ -1,4 +1,5 @@
 import styles from "../theme/tremyda.module.css";
+import TremydaSVG from "./illustrations/TremydaSVG";
 
 export default function Tremyda() {
     return (
@@ -28,12 +29,14 @@ export default function Tremyda() {
                             Our platform supports clinical studies, medical research,
                             remote patient monitoring, and more.
                         </p>
+                        <a href="https://tremyda.com/" target="_blank" rel="noopener noreferrer" className={styles.visitLink}>
+                            VISIT TREMYDA -&gt;
+                        </a>
                     </div>
 
                     <div className={styles.imagePlaceholder}>
                         <div className={styles.placeholderVisual}>
-                            {/* Represents featured image/UI */}
-                            <div className={styles.shimmerEffect} />
+                            <TremydaSVG />
                         </div>
                     </div>
                 </div>

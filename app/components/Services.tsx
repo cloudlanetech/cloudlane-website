@@ -5,6 +5,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "../theme/services.module.css";
 
+// Illustration imports
+import InfraSVG from "./illustrations/InfraSVG";
+import CloudSVG from "./illustrations/CloudSVG";
+import AWSSVG from "./illustrations/AWSSVG";
+import AISVG from "./illustrations/AISVG";
+import WebSVG from "./illustrations/WebSVG";
+import MobileSVG from "./illustrations/MobileSVG";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
@@ -12,42 +20,48 @@ const services = [
         title: "IT Infrastructure & IT Consultations",
         description:
             "End-to-end IT infrastructure design, deployment, and consulting to build resilient, scalable systems tailored to your business.",
-        icon: "🏗️",
+        // icon: "🏗️",
+        illustration: <InfraSVG />,
         tagline: "Build a resilient digital backbone with expert guidance.",
     },
     {
         title: "Cloud Solutions",
         description:
             "Migrate, manage, and optimize your cloud environments for performance, cost-efficiency, and security across all major platforms.",
-        icon: "☁️",
-        tagline: "Seamless cloud migration and optimization at scale.",
+        // icon: "☁️",
+        illustration: <CloudSVG />,
+        tagline: "Isometric infrastructure · Migrate · Scale · Optimize",
     },
     {
         title: "AWS Consulting",
         description:
             "Expert AWS architecture, migration strategies, and managed services to maximize your Amazon Web Services investment.",
-        icon: "⚡",
+        // icon: "⚡",
+        illustration: <AWSSVG />,
         tagline: "Maximize your AWS investment with battle-tested strategies.",
     },
     {
         title: "AI & Automations",
         description:
             "Leverage artificial intelligence and workflow automation to streamline operations, reduce costs, and unlock new capabilities.",
-        icon: "🤖",
+        // icon: "🤖",
+        illustration: <AISVG />,
         tagline: "Intelligent automation that drives real business outcomes.",
     },
     {
         title: "Web Applications",
         description:
             "Custom web application development using modern frameworks, delivering fast, responsive, and scalable digital experiences.",
-        icon: "🌐",
+        // icon: "🌐",
+        illustration: <WebSVG />,
         tagline: "Modern, performant web experiences built to convert.",
     },
     {
         title: "Mobile Applications",
         description:
             "Native and cross-platform mobile apps designed for performance, usability, and seamless integration with your ecosystem.",
-        icon: "📱",
+        // icon: "📱",
+        illustration: <MobileSVG />,
         tagline: "Cross-platform apps engineered for engagement.",
     },
 ];
@@ -150,9 +164,9 @@ export default function Services() {
                                     <p className={styles.serviceDesc}>
                                         {service.description}
                                     </p>
-                                    <a href="#contact" className={styles.learnMore}>
+                                    {/* <a href="#contact" className={styles.learnMore}>
                                         Learn more →
-                                    </a>
+                                    </a> */}
                                 </div>
                             </div>
                         ))}
@@ -167,13 +181,15 @@ export default function Services() {
                             ref={(el) => setCardRef(el, i)}
                             className={styles.serviceCard}
                         >
+                            <div className={styles.cardVisual}>
+                                {service.illustration}
+                            </div>
                             <div className={styles.cardPattern} />
-                            <span className={styles.cardNumber}>
-                                {String(i + 1).padStart(2, "0")}
-                            </span>
-                            <div className={styles.cardIcon}>{service.icon}</div>
-                            <h3 className={styles.cardTitle}>{service.title}</h3>
-                            <p className={styles.cardTagline}>{service.tagline}</p>
+                            <div className={styles.cardContent}>
+                                {/* <div className={styles.cardIcon}>{service.icon}</div> */}
+                                <h3 className={styles.cardTitle}>{service.title}</h3>
+                                <p className={styles.cardTagline}>{service.tagline}</p>
+                            </div>
                         </div>
                     ))}
                 </div>

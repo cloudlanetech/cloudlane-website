@@ -159,32 +159,50 @@
 /* Individual card */
 .serviceCard {
     width: 100%;
-    height: 750px;
-    aspect-ratio: 16 / 10;
+    height: 650px;
     flex-shrink: 0;
     border-radius: var(--cl-radius-xl) 0 0 var(--cl-radius-xl);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: var(--cl-space-2xl);
+    padding: 0;
     position: relative;
     overflow: hidden;
     margin-bottom: var(--cl-space-3xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #04070f; /* Base dark color from SVGs */
 }
 
-/* Dark gradient overlay */
-.serviceCard::after {
-    content: '';
+.cardVisual {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(0, 0, 0, 0.50) 0%,
-            rgba(0, 0, 0, 0.10) 40%,
-            transparent 70%);
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 0;
-    border-radius: inherit;
+}
+
+.cardVisual svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.cardContent {
+    position: relative;
+    z-index: 2;
+    padding: var(--cl-space-2xl);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+}
+
+/* Dark gradient overlay — no longer needed as cardContent has it */
+.serviceCard::after {
+    display: none;
 }
 
 /* Card gradient backgrounds */
@@ -241,7 +259,7 @@
 }
 
 /* Card icon badge */
-.cardIcon {
+/* .cardIcon {
     width: 52px;
     height: 52px;
     border-radius: var(--cl-radius-md);
@@ -256,7 +274,7 @@
     margin-bottom: var(--cl-space-md);
     position: relative;
     z-index: 1;
-}
+} */
 
 /* Card title */
 .cardTitle {

@@ -7,6 +7,7 @@
     width: 100%;
     position: relative;
     z-index: 10;
+    overflow: hidden;
 }
 
 .container {
@@ -15,14 +16,18 @@
     padding: 0 var(--cl-space-xl);
 }
 
-/* Header: Left-aligned heading, right-aligned pills (from SS2/SS1) */
+/* Header: Left text, Right graph */
 .header {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 160px;
+}
+
+.headerText {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: var(--cl-space-3xl);
-    flex-wrap: wrap;
-    gap: var(--cl-space-xl);
+    flex-direction: column;
 }
 
 .heading {
@@ -41,40 +46,39 @@
     font-weight: 700;
 }
 
-.categoryPills {
+/* Image Placeholder for SocialProof Graph (Tremyda style) */
+.headerGraph {
     display: flex;
-    gap: 12px;
+    justify-content: flex-end;
 }
 
-.pill,
-.pillActive {
-    font-family: var(--cl-font-sans);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 99px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.imagePlaceholder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
 }
 
-.pill {
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.6);
+.placeholderVisual {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
 }
 
-.pillActive {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+.placeholderVisual svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
-.pill:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-
-/* Marquee: Blank Dark Cards (from SS3) */
+/* Marquee: Grid layout (from SS3) */
 .marqueeWrapper {
     width: 100vw;
     position: relative;
@@ -83,6 +87,7 @@
     margin-left: -50vw;
     margin-right: -50vw;
     overflow: hidden;
+    /* Premium Fade edges */
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
@@ -90,16 +95,17 @@
 .marqueeRow,
 .marqueeRowReverse {
     display: flex;
-    gap: 24px;
-    padding: 12px 0;
+    gap: 12px;
+    padding: 6px 0;
+    width: max-content;
 }
 
 .marqueeRow {
-    animation: scroll 40s linear infinite;
+    animation: scroll 80s linear infinite;
 }
 
 .marqueeRowReverse {
-    animation: scrollReverse 40s linear infinite;
+    animation: scrollReverse 80s linear infinite;
 }
 
 @keyframes scroll {
@@ -122,45 +128,218 @@
     }
 }
 
-/* THE CARD - Blank, Dark, Opaque (from SS3) */
-.placeholderCard {
-    width: 320px;
-    height: 320px;
+/* THE CARD - Detailed Premium Styling */
+.card {
     background: #0d0d0d;
-    /* Very dark opaque background */
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
+    border-radius: 24px;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
 }
 
-.cardShimmer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.02),
-            transparent);
-    transform: translateX(-100%);
-    animation: shimmer 3s infinite;
+/* Row 1 cards — portrait tall */
+.row1Card {
+    width: 250px;
+    height: 380px;
 }
 
-@keyframes shimmer {
-    100% {
-        transform: translateX(100%);
+/* Row 2 cards — landscape wide */
+.row2Card {
+    width: 440px;
+    height: 280px;
+    flex-direction: row;
+    /* Image on left, text on right */
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    background: #111111;
+}
+
+/* Art/Illustration Area */
+.art {
+    width: 100%;
+    height: 260px;
+    /* Fixed height for portrait top */
+    background: #050505;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.row2Card .art {
+    width: 220px;
+    height: 100%;
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.art svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Info Area */
+.info {
+    padding: 18px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.row2Card .info {
+    width: 220px;
+    padding: 24px;
+    justify-content: center;
+}
+
+.eyebrow {
+    font-family: var(--cl-font-mono);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--cl-blue-400);
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.title {
+    font-family: var(--cl-font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+
+.sub {
+    font-family: var(--cl-font-sans);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+/* Tag Chips */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.chip {
+    font-family: var(--cl-font-mono);
+    font-size: 8px;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Specific Card Overrides (from SS) */
+.creamBackground {
+    background: #ede9e1 !important;
+    border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.creamBackground .title,
+.creamBackground .sub {
+    color: #111111 !important;
+}
+
+.creamBackground .sub {
+    opacity: 0.6;
+}
+
+.creamBackground .eyebrow {
+    color: #555;
+    opacity: 0.8;
+}
+
+.creamBackground .chip {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #444;
+}
+
+.orangeBackground {
+    background: #ff4d1c !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.orangeBackground .eyebrow {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.orangeBackground .sub {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.orangeBackground .chip {
+    background: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .header {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .row2Card {
+        width: 400px;
+    }
+
+    .row2Card .art,
+    .row2Card .info {
+        width: 200px;
     }
 }
 
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
+    .row1Card {
+        width: 220px;
+        height: 340px;
     }
 
-    .placeholderCard {
-        width: 240px;
+    .row2Card {
+        width: 340px;
         height: 240px;
+        flex-direction: column;
+    }
+
+    .row2Card .art {
+        width: 100%;
+        height: 140px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .row2Card .info {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .art {
+        height: 220px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .sub {
+        font-size: 11px;
     }
 }

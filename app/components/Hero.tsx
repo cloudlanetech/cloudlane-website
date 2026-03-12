@@ -16,12 +16,12 @@ export default function Hero() {
             </p>
 
             <div className={styles.buttonGroup}>
-                <a href="#contact" className={styles.primaryBtn}>
+                <a href="/book" className={styles.primaryBtn}>
                     Get a Free Consultation
                 </a>
-                <a href="#portfolio" className={styles.secondaryBtn}>
+                {/* <a href="#portfolio" className={styles.secondaryBtn}>
                     View Our Work
-                </a>
+                </a> */}
             </div>
 
             {/* Trust badge kept for continuity with user's previous look but styled subtly */}

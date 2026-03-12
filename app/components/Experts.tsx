@@ -72,9 +72,9 @@ export default function CoreValues() {
                             The principles that guide every decision, line of code, and client interaction.
                         </p>
                     </div>
-                    <div className={styles.actions}>
+                    {/* <div className={styles.actions}>
                         <a href="#careers" className={styles.joinLink}>Join our team →</a>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className={styles.expertsGrid}>
