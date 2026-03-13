@@ -29,7 +29,6 @@ body {
   font-family: var(--cl-font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 a {
@@ -88,4 +87,13 @@ button {
 /* Hide default cursor site-wide */
 body, a, button, [role="button"], input, textarea, select {
   cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor, .custom-cursor-ring {
+    display: none !important;
+  }
+  body, a, button, [role="button"], input, textarea, select {
+    cursor: auto !important;
+  }
 }

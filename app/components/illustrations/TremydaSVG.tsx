@@ -42,7 +42,7 @@ export default function TremydaSVG() {
         </filter>
 
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
         </pattern>
         
         <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -82,13 +82,13 @@ export default function TremydaSVG() {
         
         {/* Connection streams going upwards */}
         <path d="M-80,-20 L-80,-120" stroke="rgba(0, 229, 255, 0.4)" strokeWidth="2" strokeDasharray="4 4">
-          <animate attributeName="stroke-dashoffset" values="40;0" dur="2s" repeatCount="indefinite" />
+          <animate attributeName="strokeDashoffset" values="40;0" dur="2s" repeatCount="indefinite" />
         </path>
         <path d="M0,20 L0,-140" stroke="rgba(200, 241, 53, 0.4)" strokeWidth="2" strokeDasharray="4 4">
-          <animate attributeName="stroke-dashoffset" values="40;0" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="strokeDashoffset" values="40;0" dur="1.5s" repeatCount="indefinite" />
         </path>
         <path d="M80,-20 L80,-90" stroke="rgba(0, 229, 255, 0.4)" strokeWidth="2" strokeDasharray="4 4">
-          <animate attributeName="stroke-dashoffset" values="40;0" dur="2.5s" repeatCount="indefinite" />
+          <animate attributeName="strokeDashoffset" values="40;0" dur="2.5s" repeatCount="indefinite" />
         </path>
         
         {/* Layer 2: API & Integration Hub */}

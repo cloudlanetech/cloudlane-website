@@ -67,7 +67,7 @@
     position: sticky;
     top: 58px;
     height: calc(100vh - 58px);
-    padding: 64px 56px;
+    padding: 0px 56px 64px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -275,7 +275,7 @@
 
 /* ── RIGHT PANEL ── */
 .right {
-    padding: 64px 56px;
+    padding: 32px 36px 64px;
     display: flex;
     flex-direction: column;
 }
@@ -362,7 +362,7 @@
 
 .sectionTitle {
     font-family: var(--cl-font-mono), 'DM Mono', monospace;
-    font-size: .62rem;
+    font-size: .75rem;
     letter-spacing: .1em;
     color: rgba(240, 237, 232, 0.35);
     text-transform: uppercase;
@@ -388,7 +388,7 @@
 }
 
 .field label {
-    font-size: .7rem;
+    font-size: .85rem;
     font-weight: 600;
     letter-spacing: -.01em;
     color: rgba(240, 237, 232, .7);
@@ -397,13 +397,14 @@
 .field input,
 .field textarea,
 .field select {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(240, 237, 232, 0.07);
+    background: rgba(200, 241, 53, .015);
+    border: 1px solid rgba(200, 241, 53, .18);
+    box-shadow: 0 0 0 3px rgba(200, 241, 53, .04);
     border-radius: 10px;
     color: #f0ede8;
     font-family: var(--cl-font-mono), 'DM Mono', monospace;
-    font-size: .72rem;
-    padding: 13px 16px;
+    font-size: .85rem;
+    padding: 14px 18px;
     outline: none;
     transition: border-color .25s, background .25s, box-shadow .25s;
     -webkit-appearance: none;
@@ -419,9 +420,9 @@
 .field input:focus,
 .field textarea:focus,
 .field select:focus {
-    border-color: rgba(200, 241, 53, .4);
-    background: rgba(200, 241, 53, .03);
-    box-shadow: 0 0 0 3px rgba(200, 241, 53, .06);
+    border-color: rgba(200, 241, 53, .6);
+    background: rgba(200, 241, 53, .06);
+    box-shadow: 0 0 0 4px rgba(200, 241, 53, .08);
 }
 
 .field textarea {
@@ -442,16 +443,16 @@
 }
 
 .chipOpt {
-    background: rgba(255, 255, 255, .03);
-    border: 1px solid rgba(240, 237, 232, 0.07);
+    background: rgba(200, 241, 53, .02);
+    border: 1px solid rgba(200, 241, 53, .15);
     border-radius: 100px;
     padding: 7px 16px;
     font-family: var(--cl-font-mono), 'DM Mono', monospace;
-    font-size: .62rem;
+    font-size: .72rem;
     cursor: pointer;
     transition: all .2s;
     user-select: none;
-    color: rgba(240, 237, 232, 0.35);
+    color: #f0ede8;
 }
 
 .chipOpt:hover {
@@ -475,7 +476,7 @@
 
 .slot {
     background: rgba(255, 255, 255, .03);
-    border: 1px solid rgba(240, 237, 232, 0.07);
+    border: 1px solid rgba(99, 179, 255, .15);
     border-radius: 9px;
     padding: 10px 8px;
     text-align: center;

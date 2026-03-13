@@ -169,7 +169,8 @@
     overflow: hidden;
     margin-bottom: var(--cl-space-3xl);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: #04070f; /* Base dark color from SVGs */
+    background-color: #04070f;
+    /* Base dark color from SVGs */
 }
 
 .cardVisual {
@@ -315,22 +316,35 @@
         grid-template-columns: 1fr;
         padding-left: var(--cl-space-md);
         padding-right: var(--cl-space-md);
+        gap: var(--cl-space-xl);
     }
 
     .servicesLeft {
         position: relative;
         top: 0;
+        padding-left: 0;
+    }
+
+    .servicesRight {
+        padding-left: 0;
     }
 
     .serviceCard {
         border-radius: var(--cl-radius-xl);
+        height: 400px;
+        margin-bottom: var(--cl-space-xl);
+    }
+
+    .cardContent {
+        padding: var(--cl-space-xl);
     }
 
     .heading {
         font-size: var(--cl-text-2xl);
+        margin-bottom: var(--cl-space-xl);
     }
 
     .cardNumber {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 }

@@ -80,13 +80,10 @@
 
 /* Marquee: Grid layout (from SS3) */
 .marqueeWrapper {
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     overflow: hidden;
+    padding: 20px 0;
     /* Premium Fade edges */
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);

@@ -1,14 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import styles from "../theme/book.module.css";
 
 export default function BookPage() {
     const [step, setStep] = useState(1);
     const [selectedChips, setSelectedChips] = useState<string[]>([]);
-    const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+    const [selectedSlot, setSelectedSlot] = useState<{ id: string; text: string } | null>(null);
     const [loading, setLoading] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+
+    // Add form ref to trigger native HTML form reset
+    const formRef = React.useRef<HTMLFormElement>(null);
 
     const toggleChip = (label: string) => {
         setSelectedChips(prev =>
@@ -17,19 +21,77 @@ export default function BookPage() {
         if (step < 2) setStep(2);
     };
 
-    const handleSlotSelect = (id: string) => {
-        setSelectedSlot(id);
+    const handleSlotSelect = (id: string, text: string) => {
+        setSelectedSlot({ id, text });
         if (step < 3) setStep(3);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // Generate upcoming dates starting from tomorrow
+    const generateSlots = () => {
+        const slots = [];
+        const today = new Date();
+
+        for (let i = 1; i <= 5; i++) {
+            const nextDate = new Date(today);
+            nextDate.setDate(today.getDate() + i);
+
+            // Format Day (e.g., MON) and Date (e.g., Mar 17)
+            const dayStr = nextDate.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+            const dateStr = nextDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+            slots.push({ id: `s${i}`, day: dayStr, date: dateStr, isDiscuss: false });
+        }
+
+        slots.push({ id: 's6', day: 'ANY', date: "Let's discuss", isDiscuss: true });
+        return slots;
+    };
+
+    const slotsData = generateSlots();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        setTimeout(() => {
+
+        const formData = new FormData(e.currentTarget);
+        const payload = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            company: formData.get("company") as string,
+            role: formData.get("role") as string,
+            services: selectedChips,
+            projectDetails: formData.get("projectDetails") as string,
+            budget: formData.get("budget") as string,
+            slot: selectedSlot ? selectedSlot.text : null,
+        };
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                setShowSuccess(true);
+                // Reset form completely
+                formRef.current?.reset();
+                setSelectedChips([]);
+                setSelectedSlot(null);
+                setStep(1);
+            } else {
+                const data = await response.json();
+                console.error("Failed to submit:", data.error);
+                alert("Failed to send the request. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error submitting form", error);
+            alert("An error occurred. Please try again.");
+        } finally {
             setLoading(false);
-            setShowSuccess(true);
-        }, 1500);
+        }
     };
+
+
 
     return (
         <div className={styles.bodyWrap}>
@@ -39,12 +101,12 @@ export default function BookPage() {
                 <div className={styles.successCheck}>✓</div>
                 <h2>You're on the<br />calendar.</h2>
                 <p>We'll send a confirmation to your email within 15 minutes. Looking forward to talking about your project.</p>
-                <div
+                <Link
+                    href="/"
                     className={styles.backLink}
-                    onClick={() => setShowSuccess(false)}
                 >
-                    ← Back to form
-                </div>
+                    ← Back to Home
+                </Link>
             </div>
 
 
@@ -119,7 +181,7 @@ export default function BookPage() {
                         </div>
                     </div>
 
-                    <form onSubmit={handleSubmit}>
+                    <form ref={formRef} onSubmit={handleSubmit}>
                         {/* SECTION 1 — About you */}
                         <div className={styles.formSection}>
                             <div className={styles.sectionTitle}>// 01 · About you</div>
@@ -127,6 +189,7 @@ export default function BookPage() {
                                 <div className={styles.field}>
                                     <label>Full name</label>
                                     <input
+                                        name="name"
                                         type="text"
                                         placeholder="Shubham Bharti"
                                         onFocus={() => step < 1 && setStep(1)}
@@ -136,6 +199,7 @@ export default function BookPage() {
                                 <div className={styles.field}>
                                     <label>Work email</label>
                                     <input
+                                        name="email"
                                         type="email"
                                         placeholder="shubham@cloudlane.in"
                                         required
@@ -146,6 +210,7 @@ export default function BookPage() {
                                 <div className={styles.field}>
                                     <label>Company / Startup</label>
                                     <input
+                                        name="company"
                                         type="text"
                                         placeholder="CloudLane Inc."
                                     />
@@ -153,6 +218,7 @@ export default function BookPage() {
                                 <div className={styles.field}>
                                     <label>Role</label>
                                     <input
+                                        name="role"
                                         type="text"
                                         placeholder="CTO / Founder / Engineer"
                                     />
@@ -184,6 +250,7 @@ export default function BookPage() {
                             <div className={styles.field} style={{ marginTop: "4px" }}>
                                 <label>Tell us about your project</label>
                                 <textarea
+                                    name="projectDetails"
                                     placeholder="Brief overview — what are you building, what's the challenge, what does success look like for you?"
                                     onFocus={() => step < 2 && setStep(2)}
                                 ></textarea>
@@ -191,13 +258,13 @@ export default function BookPage() {
 
                             <div className={styles.field}>
                                 <label>Budget range</label>
-                                <select defaultValue="">
-                                    <option>Select a range</option>
-                                    <option>Under ₹50k</option>
-                                    <option>₹50k – ₹2L</option>
-                                    <option>₹2L – ₹10L</option>
-                                    <option>₹10L+</option>
-                                    <option>Let's discuss</option>
+                                <select name="budget" defaultValue="">
+                                    <option value="">Select a range</option>
+                                    <option value="Under $5k">Under $5k</option>
+                                    <option value="$5k – $10k">$5k – $10k</option>
+                                    <option value="$10k – $15k">$10k – $15k</option>
+                                    <option value="$15k+">$15k+</option>
+                                    <option value="Let's discuss">Let's discuss</option>
                                 </select>
                             </div>
                         </div>
@@ -206,24 +273,23 @@ export default function BookPage() {
 
                         {/* SECTION 3 — Time slot */}
                         <div className={styles.formSection}>
-                            <div className={styles.sectionTitle}>// 03 · Pick a slot (IST)</div>
+                            <div className={styles.sectionTitle}>// 03 · Pick a date</div>
                             <div className={styles.slotGrid}>
-                                {[
-                                    { id: "s1", day: "MON", date: "Mar 17", time: "10:00 AM" },
-                                    { id: "s2", day: "MON", date: "Mar 17", time: "3:00 PM" },
-                                    { id: "s3", day: "TUE", date: "Mar 18", time: "11:00 AM" },
-                                    { id: "s4", day: "WED", date: "Mar 19", time: "10:00 AM" },
-                                    { id: "s5", day: "THU", date: "Mar 20", time: "4:00 PM" },
-                                    { id: "s6", day: "FRI", date: "Mar 21", time: "2:00 PM" },
-                                ].map((slot) => (
+                                {slotsData.map((slot) => (
                                     <div
                                         key={slot.id}
-                                        className={`${styles.slot} ${selectedSlot === slot.id ? styles.slotSelected : ""}`}
-                                        onClick={() => handleSlotSelect(slot.id)}
+                                        className={`${styles.slot} ${selectedSlot?.id === slot.id ? styles.slotSelected : ""}`}
+                                        onClick={() => handleSlotSelect(slot.id, slot.isDiscuss ? slot.date : `${slot.day}, ${slot.date}`)}
+                                        style={slot.isDiscuss ? { display: 'flex', alignItems: 'center', justifyContent: 'center' } : {}}
                                     >
-                                        <div className={styles.slotDay}>{slot.day}</div>
-                                        <div className={styles.slotDate}>{slot.date}</div>
-                                        <div className={styles.slotTime}>{slot.time}</div>
+                                        {!slot.isDiscuss ? (
+                                            <>
+                                                <div className={styles.slotDay} style={{ marginBottom: "8px" }}>{slot.day}</div>
+                                                <div className={styles.slotDate}>{slot.date}</div>
+                                            </>
+                                        ) : (
+                                            <div className={styles.slotDate} style={{ fontSize: "16px" }}>{slot.date}</div>
+                                        )}
                                     </div>
                                 ))}
                             </div>

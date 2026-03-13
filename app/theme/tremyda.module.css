@@ -146,13 +146,29 @@
     .imagePlaceholder {
         aspect-ratio: 16 / 9;
     }
+
+    .visitLink {
+        display: flex;
+        padding: 12px 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    .desktopBr {
+        display: none;
+    }
 }
 
 .visitLink {
     display: inline-flex;
     align-items: center;
     margin-top: var(--cl-space-xl);
-    padding: 12px 160px;
+    padding: 12px 140px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;

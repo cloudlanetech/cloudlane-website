@@ -113,9 +113,20 @@ export default function Services() {
             triggers.push(st);
         });
 
+        // Ensure GSAP knows about the card positions after initial render
+        ScrollTrigger.refresh();
+
         return () => {
             triggers.forEach((st) => st.kill());
         };
+    }, []);
+
+    // Refresh triggers after a short delay to account for dynamic content/images
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 500);
+        return () => clearTimeout(timer);
     }, []);
 
     function activateService(index: number) {

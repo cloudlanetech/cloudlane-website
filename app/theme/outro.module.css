@@ -71,3 +71,17 @@
     pointer-events: none;
     z-index: 1;
 }
+@media (max-width: 768px) {
+    .outroSection {
+        padding: 80px 20px;
+    }
+
+    .headline {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .subheadline {
+        font-size: 1.1rem;
+        margin-bottom: 32px;
+    }
+}

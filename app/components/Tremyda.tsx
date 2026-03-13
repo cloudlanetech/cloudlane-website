@@ -13,8 +13,8 @@ export default function Tremyda() {
                 <div className={styles.mainContent}>
                     <div className={styles.content}>
                         <h2 className={styles.heading}>
-                            Next-Generation <br />
-                            Health Data <br />
+                            Next-Generation <span className={styles.desktopBr}><br /></span>
+                            Health Data <span className={styles.desktopBr}><br /></span>
                             Platform
                         </h2>
                         <h3 className={styles.subtitle}>

@@ -48,7 +48,7 @@ export default function Footer() {
                             <a href="/book" className={styles.navLink}>Contact</a>
                             <a href="#" className={styles.navLink}>Privacy Policy</a>
                             <a href="#" className={styles.navLink}>Terms of Service</a>
-                            <a href="#" className={styles.navLink}>Cookie Policy</a>
+                            {/* <a href="#" className={styles.navLink}>Cookie Policy</a> */}
                         </nav>
                     </div>
 
@@ -82,7 +82,7 @@ export default function Footer() {
 
                 {/* Footer Bottom */}
                 <div className={styles.footerBottom}>
-                    <p>© 2025 CloudLane. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} CloudLane. All rights reserved.</p>
                 </div>
             </div>
         </footer>
