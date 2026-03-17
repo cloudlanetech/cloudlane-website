@@ -5,7 +5,6 @@ import Experts from "./components/Experts";
 import Tremyda from "./components/Tremyda";
 import BentoGrid from "./components/BentoGrid";
 import Outro from "./components/Outro";
-import Footer from "./components/Footer";
 import styles from "./theme/page.module.css";
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
         <Tremyda />
         <BentoGrid />
         <Outro />
-        <Footer />
       </div>
     </main>
   );

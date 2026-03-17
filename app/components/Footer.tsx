@@ -46,8 +46,8 @@ export default function Footer() {
                         </h4>
                         <nav className={styles.navLinks}>
                             <a href="/book" className={styles.navLink}>Contact</a>
-                            <a href="#" className={styles.navLink}>Privacy Policy</a>
-                            <a href="#" className={styles.navLink}>Terms of Service</a>
+                            <a href="/privacy" className={styles.navLink}>Privacy Policy</a>
+                            <a href="/terms" className={styles.navLink}>Terms of Service</a>
                             {/* <a href="#" className={styles.navLink}>Cookie Policy</a> */}
                         </nav>
                     </div>

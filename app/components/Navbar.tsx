@@ -10,9 +10,9 @@ export default function Navbar() {
     const isBookPage = pathname === "/book";
 
     const navLinks = [
-        { label: "Home", href: "/", show: isBookPage },
-        { label: "Services", href: isBookPage ? "/#services" : "#services", show: true },
-        { label: "Tremyda", href: isBookPage ? "/#tremyda" : "#tremyda", show: true },
+        { label: "Home", href: "/", show: pathname !== "/" },
+        { label: "Services", href: "/#services", show: true },
+        { label: "Tremyda", href: "/#tremyda", show: true },
         { label: "Contact", href: "/book", show: !isBookPage },
     ];
 

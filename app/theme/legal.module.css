@@ -1,0 +1,138 @@
+.legalSection {
+    padding: var(--cl-space-4xl) 0;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--cl-gradient-page);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    max-width: var(--cl-max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--cl-space-xl);
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.headerContainer {
+    text-align: center;
+    margin-bottom: var(--cl-space-3xl);
+}
+
+.title {
+    font-family: var(--cl-font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cl-text-primary);
+    margin-bottom: var(--cl-space-md);
+    letter-spacing: -0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.lastUpdated {
+    color: var(--cl-text-muted);
+    font-size: var(--cl-text-sm);
+    font-family: var(--cl-font-sans);
+}
+
+/* 3-Column Boxed Layout */
+.legalBox {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #0d0d0d;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: var(--cl-space-3xl) 0;
+}
+
+.column {
+    padding: 0 var(--cl-space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--cl-space-xl);
+}
+
+.column:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-family: var(--cl-font-display);
+    font-size: var(--cl-text-lg);
+    font-weight: 600;
+    color: var(--cl-brand-green);
+    margin-bottom: var(--cl-space-md);
+    letter-spacing: -0.01em;
+}
+
+.text {
+    font-family: var(--cl-font-sans);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--cl-space-sm);
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listItem {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-family: var(--cl-font-sans);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+}
+
+.listItem::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--cl-brand-green);
+}
+
+@media (max-width: 1024px) {
+    .legalBox {
+        grid-template-columns: 1fr;
+        padding: var(--cl-space-2xl);
+        gap: var(--cl-space-2xl);
+    }
+    
+    .column {
+        padding: 0;
+    }
+    
+    .column:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: var(--cl-space-2xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .legalSection {
+        padding: var(--cl-space-3xl) 0;
+    }
+    
+    .container {
+        padding: 0 var(--cl-space-lg);
+    }
+}

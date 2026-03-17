@@ -20,16 +20,17 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-bottom: var(--cl-space-3xl);
     flex-wrap: wrap;
-    gap: var(--cl-space-xl);
-
-
+    gap: var(--cl-space-sm);
+    text-align: center;
 }
 
 .headerText {
+    width: 100%;
     max-width: 800px;
 }
 
@@ -168,6 +169,6 @@
 
     .header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 }
