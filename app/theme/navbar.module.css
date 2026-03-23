@@ -44,20 +44,18 @@
 }
 
 .logo {
-    font-family: var(--cl-font-display);
-    font-size: var(--cl-text-xl);
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     cursor: pointer;
     transition: opacity var(--cl-transition-fast);
     flex-shrink: 0;
 }
 
-.logoDot {
-    color: var(--cl-brand-green);
-    margin-left: 2px;
+.logoImage {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
 }
 
 .logo:hover {

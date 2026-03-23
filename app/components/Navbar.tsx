@@ -26,7 +26,11 @@ export default function Navbar() {
             {/* CONTENT ABOVE BLUR */}
             <div className={styles.navbarContent}>
                 <a href="/" className={styles.logo}>
-                    CloudLane<span className={styles.logoDot}>.</span>
+                    <img
+                        src="/logo.png"
+                        alt="CloudLane"
+                        className={styles.logoImage}
+                    />
                 </a>
 
                 <div className={styles.navLinks}>
