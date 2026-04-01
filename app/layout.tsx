@@ -41,6 +41,11 @@ export const metadata: Metadata = {
     "mobile applications",
     "CloudLane",
   ],
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 import Navbar from "./components/Navbar";
