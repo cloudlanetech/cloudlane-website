@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "../theme/services.module.css";
@@ -9,13 +9,23 @@ import styles from "../theme/services.module.css";
 import InfraSVG from "./illustrations/InfraSVG";
 import CloudSVG from "./illustrations/CloudSVG";
 import AWSSVG from "./illustrations/AWSSVG";
+import ConnectSVG from "./illustrations/ConnectSVG";
 import AISVG from "./illustrations/AISVG";
 import WebSVG from "./illustrations/WebSVG";
 import MobileSVG from "./illustrations/MobileSVG";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const services = [
+type Service = {
+    title: string;
+    description: string;
+    illustration: ReactNode;
+    tagline: string;
+    body?: string;
+    tags?: string[];
+};
+
+const services: Service[] = [
     {
         title: "IT Infrastructure & IT Consultations",
         description:
@@ -39,6 +49,24 @@ const services = [
         // icon: "⚡",
         illustration: <AWSSVG />,
         tagline: "Maximize your AWS investment with battle-tested strategies.",
+    },
+    {
+        title: "Contact Center & IVR Solutions",
+        description:
+            "Design, build, and integrate AI-powered contact center systems on Amazon Connect — from IVR call flows to CRM integrations like Salesforce and HubSpot.",
+        // icon: "📞",
+        illustration: <ConnectSVG />,
+        tagline: "Enterprise-grade IVR, engineered for AWS.",
+        body:
+            "We design and deploy Amazon Connect contact flows, integrate them with CRMs like Salesforce, and layer in AI-powered agent assist — so your contact center runs on infrastructure you actually own and control.",
+        tags: [
+            "Amazon Connect",
+            "Lambda",
+            "Lex",
+            "Salesforce",
+            "Contact Lens",
+            "Amazon Q in Connect",
+        ],
     },
     {
         title: "AI & Automations",
@@ -196,10 +224,26 @@ export default function Services() {
                                 {service.illustration}
                             </div>
                             <div className={styles.cardPattern} />
-                            <div className={styles.cardContent}>
+                            <div
+                                className={`${styles.cardContent}${
+                                    service.body ? ` ${styles.cardContentRich}` : ""
+                                }`}
+                            >
                                 {/* <div className={styles.cardIcon}>{service.icon}</div> */}
                                 <h3 className={styles.cardTitle}>{service.title}</h3>
                                 <p className={styles.cardTagline}>{service.tagline}</p>
+                                {service.body && (
+                                    <p className={styles.cardBody}>{service.body}</p>
+                                )}
+                                {service.tags && (
+                                    <div className={styles.cardTags}>
+                                        {service.tags.map((tag) => (
+                                            <span key={tag} className={styles.cardTag}>
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
