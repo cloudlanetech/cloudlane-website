@@ -31,7 +31,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "CloudLane - Innovating Tomorrow, Building Today",
   description:
-    "Empowering businesses with cloud technology solutions from custom software to AI-Driven platforms. We engineer your digital success.",
+    "Empowering businesses with cloud technology solutions — from custom software and AI-driven platforms to Amazon Connect IVR and contact center integrations. We engineer your digital success.",
   keywords: [
     "cloud solutions",
     "IT consulting",
@@ -40,6 +40,12 @@ export const metadata: Metadata = {
     "web applications",
     "mobile applications",
     "CloudLane",
+    "Amazon Connect",
+    "IVR development",
+    "contact center integration",
+    "Salesforce integration",
+    "CCaaS",
+    "CTI integration",
   ],
   icons: {
     icon: "/icon.png",

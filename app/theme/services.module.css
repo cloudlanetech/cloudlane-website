@@ -201,6 +201,15 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
 }
 
+/* Cards carrying detail copy + tag chips need a taller, denser scrim */
+.cardContentRich {
+    background: linear-gradient(to top,
+            rgba(2, 3, 6, 0.94) 0%,
+            rgba(2, 3, 6, 0.82) 30%,
+            rgba(2, 3, 6, 0.35) 55%,
+            transparent 72%);
+}
+
 /* Dark gradient overlay — no longer needed as cardContent has it */
 .serviceCard::after {
     display: none;
@@ -229,6 +238,10 @@
 
 .serviceCard:nth-child(6) {
     background: linear-gradient(135deg, #1a1a3a 0%, #2a2a6a 40%, #4a3a9a 100%);
+}
+
+.serviceCard:nth-child(7) {
+    background: linear-gradient(135deg, #2a1a0a 0%, #4a2f10 40%, #7a4a1a 100%);
 }
 
 /* Decorative dot pattern */
@@ -300,6 +313,39 @@
     z-index: 1;
 }
 
+/* Optional detail body copy (used by richer service cards) */
+.cardBody {
+    font-family: var(--cl-font-sans);
+    font-size: var(--cl-text-sm);
+    color: rgba(255, 255, 255, 0.48);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-top: var(--cl-space-sm);
+    position: relative;
+    z-index: 1;
+}
+
+/* Optional tech tag chips */
+.cardTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--cl-space-md);
+    position: relative;
+    z-index: 1;
+}
+
+.cardTag {
+    background: rgba(255, 153, 0, 0.1);
+    border: 1px solid rgba(255, 153, 0, 0.2);
+    color: #ff9900;
+    font-family: var(--font-dm-mono), monospace;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
 /* ========================
    RESPONSIVE
    ======================== */
@@ -337,6 +383,14 @@
 
     .cardContent {
         padding: var(--cl-space-xl);
+    }
+
+    .cardBody {
+        display: none;
+    }
+
+    .cardTags {
+        margin-top: var(--cl-space-sm);
     }
 
     .heading {

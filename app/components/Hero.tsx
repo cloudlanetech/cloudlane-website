@@ -1,8 +1,11 @@
 import styles from "../theme/hero.module.css";
+import HeroBackground from "./HeroBackground";
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
+            <HeroBackground />
+
             <h1 className={styles.heading}>
                 Innovating Tomorrow.
                 <br />
