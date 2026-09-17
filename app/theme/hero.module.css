@@ -2,30 +2,32 @@
    Hero Theme — Framer Style Refinement
    ============================================= */
 
+/* Full-bleed section — the animated background spans the whole viewport width
+   so it never looks like a boxed-in panel on wide/ultra-wide screens. The text
+   column is constrained separately inside .heroInner. */
 .hero {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
     min-height: 100vh;
-    padding: var(--cl-space-4xl) var(--cl-space-xl) var(--cl-space-4xl);
-    max-width: var(--cl-max-width);
-    margin: 0 auto;
     width: 100%;
     position: relative;
     overflow: hidden;
     background: radial-gradient(circle at 50% 50%, rgba(40, 100, 200, 0.08) 0%, transparent 60%);
 }
 
-/* Keep all hero content above the animated "Live Network" background layer */
-.hero > .heading,
-.hero > .subtext,
-.hero > .buttonGroup,
-.hero > .trustBadge,
-.hero > .topLabel {
+/* Constrained, centered text column — sits above the full-bleed background */
+.heroInner {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: var(--cl-max-width);
+    margin: 0 auto;
+    padding: var(--cl-space-4xl) var(--cl-space-xl);
 }
 
 /* Framer Top Label Pill */
@@ -147,7 +149,7 @@
 }
 
 @media (max-width: 768px) {
-    .hero {
+    .heroInner {
         padding: var(--cl-space-2xl) var(--cl-space-md) var(--cl-space-xl);
     }
 
