@@ -86,13 +86,18 @@ function createLiveNetwork(
         return c;
     });
 
+    // Density scales with the container's area so the network fills wide /
+    // ultra-wide screens instead of thinning out once the canvas is full-bleed.
     const nodeCountFor = (w: number) => {
         if (w < 600) return 20;
-        if (w < 960) return 40;
-        if (w < 1440) return 58;
-        return 68;
+        const density = (w * height) / 17000;
+        return Math.round(Math.min(130, Math.max(44, density)));
     };
-    const linkDist = () => (width < 600 ? 132 : 178);
+    const linkDist = () => {
+        if (width < 600) return 132;
+        if (width < 1700) return 178;
+        return 208;
+    };
 
     const pickColorIndex = () => {
         const r = Math.random();
